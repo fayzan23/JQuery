@@ -1,0 +1,106 @@
+<!-- In-Class 8 - COSC 2328 - Professor McCurry -->
+<!-- Implemented by - Fayzan Bhatti -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .column
+      {
+        float: left;
+        width: 33%;
+      }
+
+      body
+      {
+        background-color: lightgreen;
+        font-size: 12px;
+      }
+
+      #myform
+      {
+        border-style: inset;
+        max-width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>On this webpage we will practice utilizing mouse events</h3>
+
+    <form id="myform">
+      This field should change color as we enter and leave: <input type="text" id="txt1" value="Some sample text"><br>
+      X-Coord: <input type="number" id="num1"><br>
+      Y-Coord: <input type="number" id="num2">
+    </form>
+
+    <div class="column">
+      <img onmouseover = "swapImage(this)" id="img1" width="400px" height="400px" src="https://webcdn.triongames.com/archeage/blogs/dragonraising/legends-return-dragons.gif"><br>
+      <img onmouseover = "increaseSize(this)" id="img2" width="400px" height="400px" src="https://www.realmofhistory.com/wp-content/uploads/2018/03/10-mythical-dragon-entities-facts_11.jpg">
+    </div>
+
+    <div class="column">
+      <img id="graph" src="https://graphsketch.com/images/blank.png">
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+	//Part1 Swap Image (Fayzan)
+    $(document).ready(function () {
+      $("#img1").mouseover(function () {
+        var tmp1 = img1.src;
+        var tmp2 = img2.src;
+        img1.src = tmp2;
+        img2.src = tmp1;
+      },
+    );
+    });
+	//Part2 Change Image Size (Cynthia)
+  $(document).ready(function () {
+  $("#img2").hover(function () {
+  $(this).width(img2.clientWidth*1.50);
+  $(this).height(img2.clientHeight*1.50);
+      },
+    );
+  });
+
+  //Part 3 Part 1 Change Color 1 (Emilio)
+  $(document).ready(function () {
+  $("#txt1").hover(function () {
+  $(this).css("background", "LightBlue");
+      },
+    );
+  });
+  
+  //Part 3 Part 2 Change Color 2 (Emilio)
+  $(document).ready(function () {
+  $("#txt1").mouseleave(function () {
+  $(this).css("background", "Orange");
+      },
+    );
+  });
+
+	// Part 4 Mouse Coordinates (Bowen)
+   $(document).ready(function () {
+   $('#graph').mousemove(function (e) {
+   $("#num1").val(e.pageX);
+   $("#num2").val(e.pageY);
+    });
+   });
+
+	//Part 5 reset form (Group)
+  $(document).ready(function () {
+  $("#myform").mouseleave(function () {
+  const resetHeight = img1.clientHeight
+  const resetWidth = img1.clientWidth
+  $("#img2").width(resetHeight)
+  $("#img2").height(resetWidth)
+
+  window.alert("X-Coordinate: "+num1.value + " |" +" Y-Coordinate: "+num2.value + " |" + " Text: " + txt1.value);
+ 
+   },
+);
+});
+
+  </script>
+  </body>
+</html>
